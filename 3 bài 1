@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class SplitFourDigitNumber {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Nhập số nguyên dương có 4 chữ số: ");
+        int number = input.nextInt();
+
+        if (number >= 1000 && number <= 9999) {
+            int thousands = number / 1000;    // Hàng nghìn
+            int hundreds = (number % 1000) / 100;    // Hàng trăm
+            int tens = (number % 100) / 10;    // Hàng chục
+            int units = number % 10;    // Hàng đơn vị
+
+            System.out.println("Các chữ số của " + number + " là " + units + ", " + tens + ", " + hundreds + ", và " + thousands);
+        } else {
+            System.out.println("Số bạn nhập không có 4 chữ số.");
+        }
+
+        input.close();
+    }
+}
