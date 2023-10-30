@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class SplitFiveDigitNumber {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Nhập số nguyên dương có 5 chữ số: ");
+        int number = input.nextInt();
+
+        if (number >= 10000 && number <= 99999) {
+            int tenThousands = number / 10000;    // Chục ngàn
+            int thousands = (number % 10000) / 1000;    // Ngàn
+            int hundreds = (number % 1000) / 100;    // Trăm
+            int tens = (number % 100) / 10;    // Mươi
+            int units = number % 10;    // Đơn vị
+
+            System.out.println("Thành phần của " + number + " là: " + tenThousands + " chục ngàn, " + thousands + " ngàn, " + hundreds + " trăm, " + tens + " mươi, và " + units + " đơn vị");
+        } else {
+            System.out.println("Số bạn nhập không có 5 chữ số.");
+        }
+
+        input.close();
+    }
+}
