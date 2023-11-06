@@ -1,38 +1,37 @@
 import java.util.Scanner;
 
-public class ArithmeticOperations {
+public class FindMaxMin {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
-        System.out.print("Nhập số thực a: ");
-        double a = input.nextDouble();
+        System.out.print("Nhập số nguyên a: ");
+        int a = input.nextInt();
 
-        System.out.print("Nhập số thực b: ");
-        double b = input.nextDouble();
+        System.out.print("Nhập số nguyên b: ");
+        int b = input.nextInt();
 
-        // Tính tổng, hiệu, tích, và thương
-        double sum = a + b;
-        double difference = a - b;
-        double product = a * b;
-        double quotient = 0.0;
+        System.out.print("Nhập số nguyên c: ");
+        int c = input.nextInt();
 
-        // Kiểm tra phép chia
-        if (b != 0) {
-            quotient = a / b;
-        } else {
-            System.out.println("Không thể thực hiện phép chia vì b = 0.");
+        // Xác định số lớn nhất và nhỏ nhất
+        int max = a;
+        int min = a;
+
+        if (b > max) {
+            max = b;
+        } else if (b < min) {
+            min = b;
         }
 
-        // In kết quả
-        System.out.println("Tổng: " + sum);
-        System.out.println("Hiệu: " + difference);
-        System.out.println("Tích: " + product);
-
-        if (b != 0) {
-            System.out.println("Thương: " + quotient);
+        if (c > max) {
+            max = c;
+        } else if (c < min) {
+            min = c;
         }
+
+        System.out.println("Số lớn nhất là: " + max);
+        System.out.println("Số nhỏ nhất là: " + min);
 
         input.close();
     }
 }
-
