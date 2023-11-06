@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class LeapYearChecker {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+
+        System.out.print("Nhập một năm: ");
+        int year = input.nextInt();
+
+        boolean isLeapYear = false;
+
+        if ((year % 400 == 0) || ((year % 4 == 0) && (year % 100 != 0))) {
+            isLeapYear = true;
+        }
+
+        if (isLeapYear) {
+            System.out.println(year + " là năm nhuận.");
+        } else {
+            System.out.println(year + " không phải là năm nhuận.");
+        }
+
+        input.close();
+    }
+}
