@@ -1,0 +1,40 @@
+import java.util.Scanner;
+
+public class UocSo {
+
+    public static void main(String[] args) {
+        // Khai báo đối tượng Scanner để nhập dữ liệu từ bàn phím
+        Scanner sc = new Scanner(System.in);
+
+        // Nhập vào số nguyên dương N
+        System.out.print("Nhập vào số nguyên dương N (N > 0): ");
+        int N = sc.nextInt();
+
+        // Kiểm tra điều kiện N > 0
+        if (N <= 0) {
+            System.out.println("N phải lớn hơn 0!");
+        } else {
+            // Khai báo biến đếm số lượng ước số
+            int count = 0;
+
+            // In ra màn hình các ước số của N
+            System.out.print("Các ước số của " + N + " là: ");
+            for (int i = 1; i <= N; i++) {
+                // Nếu i là ước số của N
+                if (N % i == 0) {
+                    // In ra i
+                    System.out.print(i + " ");
+                    // Tăng biến đếm lên 1
+                    count++;
+                }
+            }
+
+            // In ra màn hình số lượng ước số của N
+            System.out.println();
+            System.out.println("Số " + N + " có " + count + " ước số.");
+        }
+
+        // Đóng đối tượng Scanner
+        sc.close();
+    }
+}
