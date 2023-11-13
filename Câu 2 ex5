@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class SoNguyenTo {
+
+    public static void main(String[] args) {
+        // Khai báo đối tượng Scanner để nhập dữ liệu từ bàn phím
+        Scanner sc = new Scanner(System.in);
+
+        // Nhập vào số nguyên M
+        System.out.print("Nhập vào số nguyên M: ");
+        int M = sc.nextInt();
+
+        // Khai báo biến cờ để kiểm tra M có phải là số nguyên tố hay không
+        boolean flag = true;
+
+        // Nếu M nhỏ hơn 2 thì không phải là số nguyên tố
+        if (M < 2) {
+            flag = false;
+        } else {
+            // Lặp từ 2 đến căn bậc hai của M
+            for (int i = 2; i <= Math.sqrt(M); i++) {
+                // Nếu M chia hết cho i thì không phải là số nguyên tố
+                if (M % i == 0) {
+                    flag = false;
+                    break;
+                }
+            }
+        }
+
+        // In ra kết quả
+        if (flag) {
+            System.out.println(M + " là số nguyên tố.");
+        } else {
+            System.out.println(M + " không phải là số nguyên tố.");
+        }
+
+        // Đóng đối tượng Scanner
+        sc.close();
+    }
+}
+
