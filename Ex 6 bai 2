@@ -1,0 +1,62 @@
+package baitaappp;
+
+import java.util.Scanner;
+
+public class baif1 {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Nhập hai số thực từ người dùng
+        System.out.print("Nhập vào số thực v1: ");
+        double v1 = scanner.nextDouble();
+
+        System.out.print("Nhập vào số thực v2: ");
+        double v2 = scanner.nextDouble();
+
+        // Nhập phép toán từ người dùng
+        System.out.print("Nhập vào phép toán (+, -, *, /, %): ");
+        char operator = scanner.next().charAt(0);
+
+        // Thực hiện tính toán và in kết quả
+        double result = 0;
+
+        switch (operator) {
+            case '+':
+                result = v1 + v2;
+                break;
+            case '-':
+                result = v1 - v2;
+                break;
+            case '*':
+                result = v1 * v2;
+                break;
+            case '/':
+                // Kiểm tra chia cho 0
+                if (v2 != 0) {
+                    result = v1 / v2;
+                } else {
+                    System.out.println("Lỗi: Không thể chia cho 0.");
+                    return;
+                }
+                break;
+            case '%':
+                // Kiểm tra chia cho 0
+                if (v2 != 0) {
+                    result = v1 % v2;
+                } else {
+                    System.out.println("Lỗi: Không thể chia cho 0.");
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Lỗi: Phép toán không hợp lệ.");
+                return;
+        }
+
+        System.out.println("Kết quả: " + v1 + " " + operator + " " + v2 + " = " + result);
+
+        // Đóng Scanner
+        scanner.close();
+    }
+}
