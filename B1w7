@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class b1w7 {
+
+    public static int uscln(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;}
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Nhập số a: ");
+        int a = scanner.nextInt();
+        System.out.print("Nhập số b: ");
+        int b = scanner.nextInt();
+        int uscln = uscln(a, b);
+        System.out.print("Nhập số chọn chức năng từ 1 đến 4"+ "\n"
+                + "1/ Tính ước số chung lớn nhất (USCLN) của 2 giá trị a và b\r\n"
+                + "2/ Tính bội số chung nhỏ nhất (BSCNN) của 2 giá trị a và b\r\n"
+                + "3/ Xác định số lớn nhất trong 2 số a và b\r\n"
+                + "4/ Xác định số nhỏ nhất trong 2 số a và b");
+        int m = scanner.nextInt();
+        switch(m) {
+            case 1 :
+                System.out.println("USCLN của " + a + " và " + b + " là: " + uscln);
+                break;
+            case 2 :
+                int bscnn = Math.abs(a * b) / uscln(a, b);
+                System.out.println("BSCNN của " + a + " và " + b + " là: " + bscnn);
+                break;
+            case 3 :
+                if (a>b) {System.out.print("a = "+a+" là số lớn nhất trong 2 số a và b");}
+                else System.out.print("b = "+b+" là số lớn nhất trong 2 số a và b");
+                break;
+            case 4 :
+                if (a<b) {System.out.print("a = "+a+" là số nhỏ nhất trong 2 số a và b");}
+                else System.out.print("b = "+b+" là số nhỏ nhất trong 2 số a và b");
+                break;
+        }
+        scanner.close();
+    }
+}
