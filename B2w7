@@ -1,0 +1,25 @@
+import java.util.Scanner;
+
+public class bai2w7 {
+	 public static int sumDigits(long n) 
+	 	{
+	        n = Math.abs(n);
+	        int sum = 0;
+	        while (n > 0) 
+	        {
+	            sum += n % 10;
+	            n /= 10;
+	        }
+	        return sum;
+	 	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+        System.out.print("Nhập một số nguyên: ");
+        long n = sc.nextLong();
+        int ketqua = sumDigits(n);
+        System.out.println("Tong cac chu so cua "+n+" la " +ketqua);
+        sc.close();
+	}
+
+}
