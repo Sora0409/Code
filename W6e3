@@ -1,0 +1,52 @@
+import java.util.Scanner;
+
+public class b3w6 {
+
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
+        Scanner sc = new Scanner(System.in);
+        int n = 10;
+
+        for(int a = 1;a<=n;a++)
+        {
+            for(int b=1;b<=a;b++)
+            {
+                System.out.print("* ");
+            }System.out.print("\n");}
+
+
+        for(int a = 1;a<=n;a++)
+        {
+            for(int b=n;b>=a;b=b-1)
+            {
+                System.out.print("* ");
+            }System.out.print("\n");}
+
+
+        for(int a = 1;a<=n;a++)
+        {
+            for(int b=1;b<a;b++)
+            {
+                System.out.print("  ");
+            }for(int b2=n;b2>=a;b2=b2-1)
+        {
+            System.out.print("* ");}
+            System.out.print("\n");}
+
+
+
+        for(int a = 1;a<=n;a++)
+        {
+            for(int b=n;b>a;b=b-1)
+            {
+                System.out.print("  ");
+            }for(int b=1;b<=a;b++)
+        {
+            System.out.print("* ");
+        }
+            System.out.print("\n");
+        }
+
+        sc.close();
+    }}
