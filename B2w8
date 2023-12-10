@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class PasswordValidator {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Nhập mật khẩu từ người dùng
+        System.out.print("Nhập mật khẩu: ");
+        String password = scanner.nextLine();
+
+        // Kiểm tra và hiển thị kết quả
+        validatePassword(password);
+
+        scanner.close();
+    }
+
+    // Hàm kiểm tra tính hợp lệ của mật khẩu
+    private static void validatePassword(String password) {
+        boolean isValid = true;
+
+        // Kiểm tra độ dài
+        if (password.length() < 10) {
+            System.out.println("- Mật khẩu có ít hơn 10 kí tự");
+            isValid = false;
+        }
+
+        // Kiểm tra chứa chữ và số
+        if (!password.matches("^[a-zA-Z0-9]*$")) {
+            System.out.println("- Mật khẩu có chứa kí tự không phải chữ và số");
+            isValid = false;
+        }
+
+        // Kiểm tra ít nhất 2 số
+        int digitCount = 0;
+        for (char ch : password.toCharArray()) {
+            if (Character.isDigit(ch)) {
+                digitCount++;
+            }
+        }
+        if (digitCount < 2) {
+            System.out.println("- Mật khẩu có ít hơn 2 số");
+            isValid = false;
+        }
+
+        // Kiểm tra có chữ hoa
+        if (!password.matches(".*[A-Z].*")) {
+            System.out.println("- Mật khẩu không có kí tự chữ hoa");
+            isValid = false;
+        }
+
+        // Hiển thị kết quả chung
+        if (isValid) {
+            System.out.println("Mật khẩu hợp lệ!");
+        } else {
+            System.out.println("Mật khẩu không hợp lệ!");
+        }
+    }
+}
