@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class SubstringCheck {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Nhập chuỗi A và B từ người dùng
+        System.out.print("Nhập chuỗi A: ");
+        String A = scanner.nextLine();
+
+        System.out.print("Nhập chuỗi B: ");
+        String B = scanner.nextLine();
+
+        // Gọi hàm kiểm tra và đếm
+        int count = countOccurrences(A, B);
+
+        // Hiển thị kết quả
+        if (count > 0) {
+            System.out.println("Chuỗi B xuất hiện trong chuỗi A " + count + " lần.");
+        } else {
+            System.out.println("Chuỗi B không xuất hiện trong chuỗi A.");
+        }
+
+        scanner.close();
+    }
+
+    public static int countOccurrences(String A, String B) {
+        int count = 0;
+        int index = A.indexOf(B);
+
+        while (index != -1) {
+            count++;
+            index = A.indexOf(B, index + 1);
+        }
+
+        return count;
+    }
+}
