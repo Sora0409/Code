@@ -1,0 +1,139 @@
+import java.util.Scanner;
+
+public class ArrayMenu {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int[] array = null;
+
+        while (true) {
+            System.out.println("\nMenu:");
+            System.out.println("1. Nhập mảng số nguyên");
+            System.out.println("2. Số lượng số chẵn trong mảng");
+            System.out.println("3. Giá trị lớn nhất trong mảng");
+            System.out.println("4. Giá trị nhỏ nhất trong mảng");
+            System.out.println("5. Đảo ngược mảng và xuất ra màn hình");
+            System.out.println("0. Thoát");
+
+            System.out.print("Chọn chức năng (0-5): ");
+            int choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    array = inputArray(scanner);
+                    break;
+                case 2:
+                    if (array != null) {
+                        int evenCount = countEvenNumbers(array);
+                        System.out.println("Số lượng số chẵn trong mảng là: " + evenCount);
+                    } else {
+                        System.out.println("Mảng chưa được nhập!");
+                    }
+                    break;
+                case 3:
+                    if (array != null) {
+                        int max = findMax(array);
+                        System.out.println("Giá trị lớn nhất trong mảng là: " + max);
+                    } else {
+                        System.out.println("Mảng chưa được nhập!");
+                    }
+                    break;
+                case 4:
+                    if (array != null) {
+                        int min = findMin(array);
+                        System.out.println("Giá trị nhỏ nhất trong mảng là: " + min);
+                    } else {
+                        System.out.println("Mảng chưa được nhập!");
+                    }
+                    break;
+                case 5:
+                    if (array != null) {
+                        reverseArray(array);
+                        System.out.println("Mảng sau khi đảo ngược: ");
+                        printArray(array);
+                    } else {
+                        System.out.println("Mảng chưa được nhập!");
+                    }
+                    break;
+                case 0:
+                    System.out.println("Thoát chương trình.");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Chức năng không hợp lệ. Vui lòng chọn lại.");
+            }
+        }
+    }
+
+    // Hàm nhập mảng số nguyên từ người dùng
+    private static int[] inputArray(Scanner scanner) {
+        System.out.print("Nhập số phần tử của mảng: ");
+        int n = scanner.nextInt();
+
+        int[] arr = new int[n];
+        System.out.println("Nhập các phần tử của mảng:");
+        for (int i = 0; i < n; i++) {
+            System.out.print("Phần tử thứ " + (i + 1) + ": ");
+            arr[i] = scanner.nextInt();
+        }
+
+        return arr;
+    }
+
+    // Hàm đếm số chẵn trong mảng
+    private static int countEvenNumbers(int[] arr) {
+        int count = 0;
+        for (int num : arr) {
+            if (num % 2 == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Hàm tìm giá trị lớn nhất trong mảng
+    private static int findMax(int[] arr) {
+        int max = arr[0];
+        for (int num : arr) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+
+    // Hàm tìm giá trị nhỏ nhất trong mảng
+    private static int findMin(int[] arr) {
+        int min = arr[0];
+        for (int num : arr) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        return min;
+    }
+
+    // Hàm đảo ngược mảng
+    private static void reverseArray(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        while (start < end) {
+            // Swap phần tử ở vị trí start và end
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+
+            // Di chuyển các con trỏ start và end
+            start++;
+            end--;
+        }
+    }
+
+    // Hàm in mảng ra màn hình
+    private static void printArray(int[] arr) {
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+    }
+}
