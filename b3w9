@@ -1,0 +1,21 @@
+public static int[] eliminateDuplicates(int[] A) {
+  // Kiểm tra nếu mảng rỗng hoặc chỉ có một phần tử thì trả về nguyên mảng
+  if (A == null || A.length <= 1) {
+    return A;
+  }
+  // Sử dụng một Set để lưu các phần tử không trùng lặp
+  Set<Integer> set = new HashSet<>();
+  // Lặp qua mảng A và thêm các phần tử vào Set
+  for (int num : A) {
+    set.add(num);
+  }
+  // Khởi tạo một mảng mới có kích thước bằng số phần tử của Set
+  int[] B = new int[set.size()];
+  // Lặp qua Set và sao chép các phần tử vào mảng mới
+  int i = 0;
+  for (int num : set) {
+    B[i++] = num;
+  }
+  // Trả về mảng mới
+  return B;
+}
