@@ -1,0 +1,47 @@
+import java.util.Scanner;
+public class CountFrequency {
+    public static void main(String[] args) {
+        // Khởi tạo một mảng có kích thước tối đa là 1000
+        int[] arr = new int[1000];
+        // Khởi tạo một biến để lưu số lượng phần tử thực tế của mảng
+        int n = 0;
+        // Khởi tạo một đối tượng Scanner để đọc dữ liệu từ bàn phím
+        Scanner sc = new Scanner(System.in);
+        // Hiển thị thông báo yêu cầu nhập các số nguyên
+        System.out.println("Nhập vào các số nguyên có giá trị trong [1, 100]: ");
+        // Lặp cho đến khi gặp số 0 hoặc đủ 1000 số
+        while (true) {
+            // Đọc một số nguyên từ bàn phím
+            int x = sc.nextInt();
+            // Kiểm tra nếu số đó bằng 0 thì dừng vòng lặp
+            if (x == 0) {
+                break;
+            }
+            // Kiểm tra nếu số đó nằm trong khoảng [1, 100] thì thêm vào mảng
+            if (x >= 1 && x <= 100) {
+                arr[n] = x;
+                n++;
+            }
+            // Kiểm tra nếu đã đủ 1000 số thì dừng vòng lặp
+            if (n == 1000) {
+                break;
+            }
+        }
+        // Đóng đối tượng Scanner
+        sc.close();
+        // Khởi tạo một mảng để lưu tần suất xuất hiện của mỗi số
+        int[] freq = new int[101];
+        // Lặp qua mảng arr và tăng tần suất của số tương ứng
+        for (int i = 0; i < n; i++) {
+            freq[arr[i]]++;
+        }
+        // Hiển thị kết quả
+        System.out.println("Xuất:");
+        for (int i = 1; i <= 100; i++) {
+            // Nếu số nào có tần suất lớn hơn 0 thì in ra màn hình
+            if (freq[i] > 0) {
+                System.out.println("Số " + i + " xuất hiện " + freq[i] + " lần");
+            }
+        }
+    }
+}
