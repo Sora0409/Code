@@ -1,0 +1,51 @@
+public class Main {
+    public static void main(String[] args) {
+        // Gọi hàm với một mảng ví dụ
+        int[] inputArray = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
+        int[] resultArray = eliminateDuplicates(inputArray);
+
+        // In kết quả
+        System.out.print("Mảng mới sau khi loại bỏ phần tử trùng lặp: ");
+        for (int value : resultArray) {
+            System.out.print(value + " ");
+        }
+    }
+
+    public static int[] eliminateDuplicates(int[] A) {
+        int n = A.length;
+        int newSize = 0;
+
+        // Kiểm tra số lượng phần tử không trùng lặp
+        for (int i = 0; i < n; i++) {
+            boolean isDuplicate = false;
+            for (int j = 0; j < i; j++) {
+                if (A[i] == A[j]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate) {
+                newSize++;
+            }
+        }
+
+        // Tạo mảng mới không chứa phần tử trùng lặp
+        int[] resultArray = new int[newSize];
+        int index = 0;
+
+        for (int i = 0; i < n; i++) {
+            boolean isDuplicate = false;
+            for (int j = 0; j < i; j++) {
+                if (A[i] == A[j]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+            if (!isDuplicate) {
+                resultArray[index++] = A[i];
+            }
+        }
+
+        return resultArray;
+    }
+}
