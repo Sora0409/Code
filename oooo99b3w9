@@ -1,51 +1,47 @@
-public class Main {
-    public static void main(String[] args) {
-        // Gọi hàm với một mảng ví dụ
-        int[] inputArray = {1, 2, 3, 2, 1, 6, 3, 4, 5, 2};
-        int[] resultArray = eliminateDuplicates(inputArray);
+import java.util.ArrayList;
+import java.util.Scanner;
 
-        // In kết quả
-        System.out.print("Mảng mới sau khi loại bỏ phần tử trùng lặp: ");
-        for (int value : resultArray) {
-            System.out.print(value + " ");
+public class RemoveDuplicates {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nhập số lượng phần tử của mảng (N): ");
+        int N = scanner.nextInt();
+
+        int[] originalArray = new int[N];
+
+        System.out.println("Nhập các phần tử của mảng:");
+
+        for (int i = 0; i < N; i++) {
+            originalArray[i] = scanner.nextInt();
         }
+
+        int[] newArray = eliminateDuplicates(originalArray);
+
+        System.out.println("Mảng mới sau khi loại bỏ các phần tử trùng là:");
+
+        for (int element : newArray) {
+            System.out.print(element + " ");
+        }
+
+        scanner.close();
     }
 
     public static int[] eliminateDuplicates(int[] A) {
-        int n = A.length;
-        int newSize = 0;
+        ArrayList<Integer> uniqueElements = new ArrayList<>();
 
-        // Kiểm tra số lượng phần tử không trùng lặp
-        for (int i = 0; i < n; i++) {
-            boolean isDuplicate = false;
-            for (int j = 0; j < i; j++) {
-                if (A[i] == A[j]) {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-            if (!isDuplicate) {
-                newSize++;
+        for (int element : A) {
+            if (!uniqueElements.contains(element)) {
+                uniqueElements.add(element);
             }
         }
 
-        // Tạo mảng mới không chứa phần tử trùng lặp
-        int[] resultArray = new int[newSize];
-        int index = 0;
+        int[] newArray = new int[uniqueElements.size()];
 
-        for (int i = 0; i < n; i++) {
-            boolean isDuplicate = false;
-            for (int j = 0; j < i; j++) {
-                if (A[i] == A[j]) {
-                    isDuplicate = true;
-                    break;
-                }
-            }
-            if (!isDuplicate) {
-                resultArray[index++] = A[i];
-            }
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i] = uniqueElements.get(i);
         }
 
-        return resultArray;
+        return newArray;
     }
 }
