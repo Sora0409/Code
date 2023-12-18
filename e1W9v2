@@ -1,115 +1,68 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
-public class MenuArray {
-
+public class RemoveDuplicatesWithCount {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int[] array = null; // khai báo mảng số nguyên
-        boolean exit = false; // biến kiểm tra thoát chương trình
-        while (!exit) {
-            // hiển thị menu
-            System.out.println("Chọn chức năng:");
-            System.out.println("1. Nhập mảng số nguyên");
-            System.out.println("2. Đếm số chẵn trong mảng");
-            System.out.println("3. Tìm phần tử lớn nhất trong mảng");
-            System.out.println("4. Tìm phần tử nhỏ nhất trong mảng");
-            System.out.println("5. Đảo ngược mảng và xuất ra màn hình");
-            System.out.println("6. Thoát chương trình");
-            System.out.print("Nhập lựa chọn của bạn: ");
-            int choice = sc.nextInt(); // nhập lựa chọn
-            switch (choice) {
-                case 1:
-                    // nhập mảng số nguyên
-                    System.out.print("Nhập số phần tử của mảng (0 ≤ N ≤ 100): ");
-                    int n = sc.nextInt(); // nhập số phần tử
-                    if (n < 0 || n > 100) {
-                        System.out.println("Số phần tử không hợp lệ!");
-                        break;
-                    }
-                    array = new int[n]; // khởi tạo mảng
-                    for (int i = 0; i < n; i++) {
-                        System.out.print("Nhập phần tử thứ " + (i + 1) + " của mảng (≥ -100 và ≤ 100): ");
-                        int x = sc.nextInt(); // nhập phần tử
-                        if (x < -100 || x > 100) {
-                            System.out.println("Phần tử không hợp lệ!");
-                            break;
-                        }
-                        array[i] = x; // gán phần tử vào mảng
-                    }
-                    System.out.println("Đã nhập mảng thành công!");
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Nhập số lượng phần tử của mảng (N): ");
+        int N = scanner.nextInt();
+
+        int[] originalArray = new int[N];
+
+        System.out.println("Nhập các phần tử của mảng:");
+
+        for (int i = 0; i < N; i++) {
+            originalArray[i] = scanner.nextInt();
+        }
+
+        int[] newArray = eliminateDuplicates(originalArray);
+
+        System.out.println("Mảng mới sau khi loại bỏ các phần tử trùng là:");
+
+        for (int element : newArray) {
+            System.out.print(element + " ");
+        }
+
+        scanner.close();
+    }
+
+    public static int[] eliminateDuplicates(int[] A) {
+        int count = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            boolean isDuplicate = false;
+
+            for (int j = 0; j < i; j++) {
+                if (A[i] == A[j]) {
+                    isDuplicate = true;
                     break;
-                case 2:
-                    // đếm số chẵn trong mảng
-                    if (array == null) {
-                        System.out.println("Mảng chưa được nhập!");
-                        break;
-                    }
-                    int count = 0; // biến đếm số chẵn
-                    for (int x : array) {
-                        if (x % 2 == 0) {
-                            count++; // tăng biến đếm nếu phần tử chia hết cho 2
-                        }
-                    }
-                    System.out.println("Số chẵn trong mảng là: " + count);
-                    break;
-                case 3:
-                    // tìm phần tử lớn nhất trong mảng
-                    if (array == null) {
-                        System.out.println("Mảng chưa được nhập!");
-                        break;
-                    }
-                    int max = array[0]; // biến lưu giá trị lớn nhất, khởi tạo bằng phần tử đầu tiên
-                    for (int x : array) {
-                        if (x > max) {
-                            max = x; // cập nhật giá trị lớn nhất nếu phần tử lớn hơn
-                        }
-                    }
-                    System.out.println("Phần tử lớn nhất trong mảng là: " + max);
-                    break;
-                case 4:
-                    // tìm phần tử nhỏ nhất trong mảng
-                    if (array == null) {
-                        System.out.println("Mảng chưa được nhập!");
-                        break;
-                    }
-                    int min = array[0]; // biến lưu giá trị nhỏ nhất, khởi tạo bằng phần tử đầu tiên
-                    for (int x : array) {
-                        if (x < min) {
-                            min = x; // cập nhật giá trị nhỏ nhất nếu phần tử nhỏ hơn
-                        }
-                    }
-                    System.out.println("Phần tử nhỏ nhất trong mảng là: " + min);
-                    break;
-                case 5:
-                    // đảo ngược mảng và xuất ra màn hình
-                    if (array == null) {
-                        System.out.println("Mảng chưa được nhập!");
-                        break;
-                    }
-                    int n = array.length; // số phần tử của mảng
-                    for (int i = 0; i < n / 2; i++) {
-                        // đổi chỗ phần tử thứ i với phần tử thứ n - i - 1
-                        int temp = array[i];
-                        array[i] = array[n - i - 1];
-                        array[n - i - 1] = temp;
-                    }
-                    System.out.print("Mảng sau khi đảo ngược là: ");
-                    for (int x : array) {
-                        System.out.print(x + " "); // xuất phần tử của mảng
-                    }
-                    System.out.println();
-                    break;
-                case 6:
-                    // thoát chương trình
-                    exit = true;
-                    System.out.println("Cảm ơn bạn đã sử dụng chương trình!");
-                    break;
-                default:
-                    // lựa chọn không hợp lệ
-                    System.out.println("Lựa chọn không hợp lệ!");
-                    break;
+                }
+            }
+
+            if (!isDuplicate) {
+                count++;
             }
         }
-        sc.close(); // đóng Scanner
+
+        int[] newArray = new int[count];
+        count = 0;
+
+        for (int i = 0; i < A.length; i++) {
+            boolean isDuplicate = false;
+
+            for (int j = 0; j < i; j++) {
+                if (A[i] == A[j]) {
+                    isDuplicate = true;
+                    break;
+                }
+            }
+
+            if (!isDuplicate) {
+                newArray[count++] = A[i];
+            }
+        }
+
+        return newArray;
     }
 }
