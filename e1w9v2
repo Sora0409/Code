@@ -1,0 +1,127 @@
+import java.util.Scanner;
+
+public class ArrayMenu {
+    static Scanner scanner = new Scanner(System.in);
+    static int[] array;
+    static int size;
+
+    public static void main(String[] args) {
+        showMenu();
+    }
+
+    static void showMenu() {
+        int choice;
+        do {
+            System.out.println("\nMenu:");
+            System.out.println("1. Nhập mảng");
+            System.out.println("2. Số lượng số chẵn");
+            System.out.println("3. Phần tử lớn nhất");
+            System.out.println("4. Phần tử bé nhất");
+            System.out.println("5. Đảo ngược mảng");
+            System.out.println("6. Tổng số lẻ");
+            System.out.println("7. Giá trị trung bình");
+            System.out.println("8. Thoát");
+
+            System.out.print("Chọn chức năng (1-8): ");
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    inputArray();
+                    break;
+                case 2:
+                    countEvenNumbers();
+                    break;
+                case 3:
+                    findMaxElement();
+                    break;
+                case 4:
+                    findMinElement();
+                    break;
+                case 5:
+                    reverseArray();
+                    break;
+                case 6:
+                    sumOddNumbers();
+                    break;
+                case 7:
+                    averageValue();
+                    break;
+                case 8:
+                    System.out.println("Đã thoát chương trình.");
+                    break;
+                default:
+                    System.out.println("Chọn không hợp lệ. Vui lòng chọn lại.");
+            }
+        } while (choice != 8);
+    }
+
+    static void inputArray() {
+        System.out.print("Nhập số phần tử của mảng: ");
+        size = scanner.nextInt();
+
+        array = new int[size];
+        System.out.println("Nhập các phần tử của mảng:");
+        for (int i = 0; i < size; i++) {
+            System.out.print("Phần tử thứ " + (i + 1) + ": ");
+            array[i] = scanner.nextInt();
+        }
+    }
+
+    static void countEvenNumbers() {
+        int count = 0;
+        for (int num : array) {
+            if (num % 2 == 0) {
+                count++;
+            }
+        }
+        System.out.println("Số lượng số chẵn trong mảng: " + count);
+    }
+
+    static void findMaxElement() {
+        int max = array[0];
+        for (int num : array) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        System.out.println("Phần tử lớn nhất trong mảng: " + max);
+    }
+
+    static void findMinElement() {
+        int min = array[0];
+        for (int num : array) {
+            if (num < min) {
+                min = num;
+            }
+        }
+        System.out.println("Phần tử bé nhất trong mảng: " + min);
+    }
+
+    static void reverseArray() {
+        System.out.print("Mảng sau khi đảo ngược: ");
+        for (int i = size - 1; i >= 0; i--) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
+    }
+
+    static void sumOddNumbers() {
+        int sum = 0;
+        for (int num : array) {
+            if (num % 2 != 0) {
+                sum += num;
+            }
+        }
+        System.out.println("Tổng số lẻ trong mảng: " + sum);
+    }
+
+    static void averageValue() {
+        int sum = 0;
+        for (int num : array) {
+            sum += num;
+        }
+        double average = (double) sum / size;
+        System.out.println("Giá trị trung bình của các số trong mảng: " + average);
+    }
+}
