@@ -1,0 +1,117 @@
+import java.util.Scanner;
+
+public class Main {
+    private static char[][] board = {
+            {'1', '2', '3'},
+            {'4', '5', '6'},
+            {'7', '8', '9'}
+    };
+    private static char currentPlayerMark = 'X';
+
+    public static void main(String[] args) {
+        displayBoard();
+
+        while (true) {
+            int inputPosition = getPlayerInput();
+            updateBoard(inputPosition);
+
+            if (checkForWin()) {
+                displayBoard();
+                System.out.println("Xin chúc mừng, người chơi " + currentPlayerMark + " đã chiến thắng!");
+                break;
+            }
+
+            if (checkForDraw()) {
+                displayBoard();
+                System.out.println("Rất tiếc, cả hai hòa nhau!");
+                break;
+            }
+
+            switchPlayer();
+        }
+    }
+
+    private static void displayBoard() {
+        System.out.println("-------------");
+        for (int i = 0; i < 3; i++) {
+            System.out.print("| ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j] + " | ");
+            }
+            System.out.println();
+            System.out.println("-------------");
+        }
+    }
+
+    private static int getPlayerInput() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Người chơi " + currentPlayerMark + ", nhập số ô bạn muốn đánh (1-9): ");
+        return scanner.nextInt();
+    }
+
+    private static void updateBoard(int position) {
+        char mark = (currentPlayerMark == 'X') ? 'X' : 'O';
+        switch (position) {
+            case 1:
+                board[0][0] = mark;
+                break;
+            case 2:
+                board[0][1] = mark;
+                break;
+            case 3:
+                board[0][2] = mark;
+                break;
+            case 4:
+                board[1][0] = mark;
+                break;
+            case 5:
+                board[1][1] = mark;
+                break;
+            case 6:
+                board[1][2] = mark;
+                break;
+            case 7:
+                board[2][0] = mark;
+                break;
+            case 8:
+                board[2][1] = mark;
+                break;
+            case 9:
+                board[2][2] = mark;
+                break;
+            default:
+                System.out.println("Số ô không hợp lệ!");
+        }
+        displayBoard();
+    }
+
+    private static boolean checkForWin() {
+        for (int i = 0; i < 3; i++) {
+            if (board[i][0] == currentPlayerMark && board[i][1] == currentPlayerMark && board[i][2] == currentPlayerMark) {
+                return true;
+            }
+            if (board[0][i] == currentPlayerMark && board[1][i] == currentPlayerMark && board[2][i] == currentPlayerMark) {
+                return true;
+            }
+        }
+        if (board[0][0] == currentPlayerMark && board[1][1] == currentPlayerMark && board[2][2] == currentPlayerMark) {
+            return true;
+        }
+        return board[0][2] == currentPlayerMark && board[1][1] == currentPlayerMark && board[2][0] == currentPlayerMark;
+    }
+
+    private static boolean checkForDraw() {
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (board[i][j] != 'X' && board[i][j] != 'O') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private static void switchPlayer() {
+        currentPlayerMark = (currentPlayerMark == 'X') ? 'O' : 'X';
+    }
+}
