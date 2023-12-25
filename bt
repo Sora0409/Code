@@ -1,0 +1,8 @@
+Viết chương trình là 1 menu có các chức năng sau:
+• Chức năng 1: Cho người dùng nhập 1 số nguyên n. Sau đó, khởi tạo 1 mảng có n
+số nguyên ngẫu nhiên từ 1 đến 100.
+• Chức năng 2: In các số lẻ trong khoảng từ 11 đến 55 ra màn hình (từ danh sách
+khởi tạo ở chức năng 1).
+• Chức năng 3: Tìm số nhỏ nhì trong danh sách (từ danh sách khởi tạo ở chức năng
+1).
+• Chức năng 4: Thoát chương trình.
